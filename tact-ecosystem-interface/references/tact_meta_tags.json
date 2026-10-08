@@ -1,0 +1,56 @@
+{
+  "asset": "tact_meta_tags",
+  "meta_version": "v1.0",
+  "bound_to": "tact v2.7.8",
+  "generated": "2026-09-29",
+  "annotation_scope": "EXAMPLE-LEVEL：仅 10 个高频坐标有完整元标签；其余坐标元标签为 null 待补。使用前必须先查目标坐标是否有完整标注，不得默认全量已标（三护栏③）。",
+  "note": "元标签是附加属性层：轴不变、坐标不变、主数据（coordinate_data.json）不被修改。severity 参照 EU AI Act 后果分级；detectability 参照 ATLAS 检测难度；attack_surface 参照 ATLAS 战术映射。",
+  "schema": {
+    "severity": {"S1": "致命（死亡/重伤/重大损害）", "S2": "中等（健康损害/实质损失/群体歧视）", "S3": "轻微（不便/误导）", "S4": "无直接伤害（可恢复内部错误）"},
+    "detectability": {"D1": "极易（输出层可见）", "D2": "中等（日志可查）", "D3": "难（隐蔽）", "D4": "极难（事后才知）"},
+    "attack_surface": "input / model / output / system / training / environment",
+    "mirror": "镜像对坐标 code，无镜像为 null",
+    "status": {"active": "正式坐标", "predicted": "预测格（1 案例）", "pending": "预测族空族", "deprecated": "已弃用"},
+    "domain": "symbol / interface / handoff / adversarial / fairness / compliance / emergent / memory / capability / other",
+    "evidence_strength": {"E3": "≥3 案例", "E2": "2 案例", "E1": "1 案例", "E0": "无案例，纯理论"}
+  },
+  "mirrors": {
+    "M6-1": "P8-8",
+    "M6-2": "P8-9",
+    "M6-3": "P6-4",
+    "M6-5": "P8-5",
+    "M6-6": "P8-4",
+    "M6-11": "P8-7",
+    "M5-9": "P7-4",
+    "M5-8": "P6-4[5]",
+    "M4-2": "P8-3",
+    "M4-3": "P5-6",
+    "P2-1": "M3-1",
+    "P2-2": "M5-3",
+    "P2-3": "M7-1",
+    "P2-5": "M8-6",
+    "P4-5": "M2-3",
+    "P4-7": "M2-4",
+    "P4-8": "M1-2",
+    "P4-9": "M8-3"
+  },
+  "mirror_note": "已登记 18 对（36 坐标），为可溯源清单；全量镜像约 37 个，剩余待逐坐标核验补齐。对外口径：117 坐标 / 约 80 独立机制 / 18 对已登记镜像。",
+  "status_annotations": {
+    "M9": {"status": "pending", "reason": "预测族：INC-05 德语 wiki 自发协作 1 案例，缺第二条互不相干案例，按演进规则不转正", "case": "INC-05"},
+    "sensor-deception": {"status": "predicted", "reason": "预测格：传感欺骗/输入媒介替换仅 1 案例，不占正式子坐标编号", "case": "1 案例"}
+  },
+  "domain_symbol": ["M2-1", "M2-6", "M2-7", "P1-1", "P1-2", "P1-3", "P4-2", "P4-3"],
+  "domain_symbol_note": "符号域 8 坐标：⑤粒度校准识别的重叠嫌疑组，建议投放验证包定向标注后用数据决定合并/保留，不凭直觉改。",
+  "examples": {
+    "M2-2": {"name": "事实冲突", "severity": "S2", "detectability": "D1", "attack_surface": "output", "mirror": "P1-8", "status": "active", "domain": "memory/factual", "evidence": "E3"},
+    "M2-3": {"name": "自我评估失准", "severity": "S2", "detectability": "D1", "attack_surface": "output", "mirror": "P4-5", "status": "active", "domain": "capability", "evidence": "E3"},
+    "M2-5": {"name": "算法歧视", "severity": "S2", "detectability": "D2", "attack_surface": "model/training", "mirror": "P7-1", "status": "active", "domain": "fairness", "evidence": "E3"},
+    "M3-1": {"name": "推导跳跃", "severity": "S1", "detectability": "D1", "attack_surface": "output", "mirror": "P2-1", "status": "active", "domain": "reasoning", "evidence": "E3"},
+    "M4-2": {"name": "凭证泄露", "severity": "S1", "detectability": "D2", "attack_surface": "system", "mirror": "P8-3", "status": "active", "domain": "adversarial", "evidence": "E3"},
+    "M6-3": {"name": "提示注入", "severity": "S1", "detectability": "D2", "attack_surface": "input", "mirror": "P6-4", "status": "active", "domain": "adversarial", "evidence": "E3"},
+    "M6-6": {"name": "自主越权访问", "severity": "S1", "detectability": "D3", "attack_surface": "system/environment", "mirror": "P8-4", "status": "active", "domain": "adversarial", "evidence": "E3"},
+    "M6-11": {"name": "监管规避行为", "severity": "S2", "detectability": "D3", "attack_surface": "model", "mirror": "P8-7", "status": "active", "domain": "compliance", "evidence": "E2"},
+    "P7-1": {"name": "算法歧视", "severity": "S2", "detectability": "D2", "attack_surface": "model/training", "mirror": "M2-5", "status": "active", "domain": "fairness", "evidence": "E3"},
+    "P1-8": {"name": "事实冲突", "severity": "S2", "detectability": "D1", "attack_surface": "output", "mirror": "M2-2", "status": "active", "domain": "memory/factual", "evidence": "E3"}
+  }
+}
