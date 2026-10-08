@@ -1,0 +1,19 @@
+{
+  "asset": "tact-three-axis-check 受控文件完整性清单（版本锁基线）",
+  "guard_version": "v1.0",
+  "note": "SHA-256 为内容权威基线；version 为逻辑版本。任何受控文件被外部回滚/篡改，verify.sh 会报警。更新受控文件后必须重新生成本 MANIFEST。",
+  "controlled_files": {
+    "SKILL.md": {
+      "sha256": "63ea1d6080bc5fe837c52ca60116995ccc9c56a1ed5e572d9c209165b45cfb24",
+      "version": "v1.1.1"
+    },
+    "references/calibration_cases.json": {
+      "sha256": "ae24d4312e0cbd04151dc045b803a5d70bc4da266ff43c4ace57b9ffaf9150db",
+      "version": "v1.1.1"
+    },
+    "references/coordinate_data.json": {
+      "sha256": "c45abb1c6e7ecd4c885834f474d9dd21c69586e7c5b4de9a5799d097b7a0b2a7",
+      "version": "v2.7.8"
+    }
+  }
+}
