@@ -1,0 +1,19 @@
+# 构建/内部产物（不入库）
+_work/
+
+# 备份文件（不入库）
+*.bak*
+*.bak
+
+# Python 缓存
+__pycache__/
+*.pyc
+
+# 本地配置（可能含 API key，不入库）
+config.json
+.env
+
+# 操作系统/编辑器杂项
+Thumbs.db
+.DS_Store
+*.swp
