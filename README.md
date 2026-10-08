@@ -46,4 +46,4 @@
 
 ---
 
-*Copyright (c) 2026 KLameng · Released under CC BY 4.0.*
+*Copyright (c) 2026 KLameng <911712412@qq.com> · Released under CC BY 4.0.*
