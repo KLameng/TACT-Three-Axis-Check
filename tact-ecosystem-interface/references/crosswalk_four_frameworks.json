@@ -1,0 +1,720 @@
+{
+  "asset": "crosswalk",
+  "bound_to": "tact v2.7.8",
+  "framework_versions": {
+    "OWASP": "OWASP Top 10 for LLM 2025",
+    "NIST": "NIST AI RMF / AI 600-1",
+    "EU_AI_ACT": "Regulation (EU) 2024/1689",
+    "ATLAS": "MITRE ATLAS 2026",
+    "AGENTIC": "OWASP Top 10 for Agentic Applications 2026"
+  },
+  "generated": "2026-09-29",
+  "note": "双向翻译枢纽：正向（框架条目→TACT 坐标）48 项收录（OWASP LLM 10 + NIST 12 + EU 9 + ATLAS 7 + AGENTIC 10）+ 反向（TACT 坐标→框架条目）32 项；数据源自 45 项核验报告（实装下率 90%，含 ATLAS 技术层核验）。每条映射带判据+案例；verification_status 区分已核验与待验证假设。AGENTIC（OWASP Top 10 for Agentic Applications 2026）为 Agent 时代新上游，多数映射与既有 verified 坐标机制同构；部分（ASI05/07/10）标 hypothesis，待 Agentic 真实事故案例佐证。框架版本升级后须重核验。",
+  "forward": {
+    "OWASP": [
+      {
+        "id": "LLM01",
+        "name": "提示注入",
+        "tact": "M6-3 + P6-4",
+        "judge": "外部输入夹带指令被当真执行",
+        "case": "AISI UK 社会工程（伪造身份+注入）C06",
+        "status": "verified"
+      },
+      {
+        "id": "LLM02",
+        "name": "敏感信息泄露",
+        "tact": "M1-1 / M4-2 / P8-3 / P8-6",
+        "judge": "训练语料或运行时把敏感信息吐出",
+        "case": "记忆复现 PII 泄露类",
+        "status": "verified"
+      },
+      {
+        "id": "LLM03",
+        "name": "供应链",
+        "tact": "M6-1 + P8-8",
+        "judge": "第三方组件带漏洞/来源不明",
+        "case": "Hugging Face 零日入侵 C05",
+        "status": "verified"
+      },
+      {
+        "id": "LLM04",
+        "name": "数据与模型投毒",
+        "tact": "M6-7 + M6-8",
+        "judge": "攻击者主动注入恶意数据",
+        "case": "OWASP 投毒场景",
+        "status": "verified"
+      },
+      {
+        "id": "LLM05",
+        "name": "不当输出处理",
+        "tact": "M8-8",
+        "judge": "输出未校验即被下游执行",
+        "case": "Meta 智能体缺陷建议被采纳 C17",
+        "status": "verified"
+      },
+      {
+        "id": "LLM06",
+        "name": "过度代理",
+        "tact": "M7-3 + P5-2",
+        "judge": "承接超出授权边界任务",
+        "case": "日报 E1/E2 越权承接",
+        "status": "verified"
+      },
+      {
+        "id": "LLM07",
+        "name": "系统提示泄露",
+        "tact": "M4-2",
+        "judge": "内部提示文本被带出（M4-2 desc 需扩'配置/提示文本'示例，未修）",
+        "case": "待补充",
+        "status": "hypothesis"
+      },
+      {
+        "id": "LLM08",
+        "name": "向量与嵌入弱点",
+        "tact": "M6-3 / M6-8",
+        "judge": "检索库投毒/间接注入",
+        "case": "检索投毒场景",
+        "status": "verified"
+      },
+      {
+        "id": "LLM09",
+        "name": "错误信息",
+        "tact": "M2-2 + P1-8",
+        "judge": "编造事实当真话讲",
+        "case": "杭州幻觉侵权案 C12",
+        "status": "verified"
+      },
+      {
+        "id": "LLM10",
+        "name": "无限消耗",
+        "tact": "M8-7 + P5-7",
+        "judge": "算力调用不受控",
+        "case": "DNS 沙盒逃逸资源消耗 C04",
+        "status": "verified"
+      }
+    ],
+    "NIST": [
+      {
+        "id": "N01",
+        "name": "CBRN 武器信息",
+        "tact": "P5-5 / P8-6 / M6-11",
+        "judge": "违禁内容输出/规避",
+        "case": "通用安全测试类",
+        "status": "verified"
+      },
+      {
+        "id": "N02",
+        "name": "Confabulation 幻觉",
+        "tact": "M2-2 + P1-8",
+        "judge": "拟真幻觉",
+        "case": "杭州幻觉案 C12、医疗报告 A13",
+        "status": "verified"
+      },
+      {
+        "id": "N03",
+        "name": "数据隐私",
+        "tact": "M4-2 / P8-3 / P8-6",
+        "judge": "凭证/隐私泄露",
+        "case": "ZCode 数据外传 C07",
+        "status": "verified"
+      },
+      {
+        "id": "N04",
+        "name": "危险/暴力/仇恨内容",
+        "tact": "P5-5 / P8-6",
+        "judge": "违禁内容",
+        "case": "元宝辱骂 INC-09",
+        "status": "verified"
+      },
+      {
+        "id": "N05",
+        "name": "环境影响（能源）",
+        "tact": "P5-7",
+        "judge": "资源无节制消耗",
+        "case": "大模型训练能耗类",
+        "status": "verified"
+      },
+      {
+        "id": "N06",
+        "name": "有害偏见与同质化",
+        "tact": "M2-5 / P7-1 / P7-2",
+        "judge": "群体系统性差异",
+        "case": "PGT KIDScore 性别偏倚",
+        "status": "verified"
+      },
+      {
+        "id": "N07",
+        "name": "人类-AI 过度依赖",
+        "tact": "P4-8 / P8-5",
+        "judge": "人盲信系统",
+        "case": "Winters 案 / 医疗 A2",
+        "status": "verified"
+      },
+      {
+        "id": "N08",
+        "name": "信息完整性（deepfake）",
+        "tact": "P8-2",
+        "judge": "深度伪造",
+        "case": "AI 换脸诈骗 C22",
+        "status": "verified"
+      },
+      {
+        "id": "N09",
+        "name": "信息安全",
+        "tact": "M6 族 / P8 族",
+        "judge": "漏洞攻击",
+        "case": "Gemini 入侵 INC-01",
+        "status": "verified"
+      },
+      {
+        "id": "N10",
+        "name": "知识产权",
+        "tact": "治理域 + P8-6",
+        "judge": "版权授权争议属治理",
+        "case": "NYT 版权案 C11",
+        "status": "verified"
+      },
+      {
+        "id": "N11",
+        "name": "淫秽/贬低/虐待",
+        "tact": "P5-5 / P8-6",
+        "judge": "违禁内容",
+        "case": "内容安全类",
+        "status": "verified"
+      },
+      {
+        "id": "N12",
+        "name": "价值对齐与易用性",
+        "tact": "M5 族 / M6-5 / M8",
+        "judge": "方向偏离/操纵",
+        "case": "Bing Sydney C26",
+        "status": "verified"
+      }
+    ],
+    "EU_AI_ACT": [
+      {
+        "id": "EU01",
+        "name": "有害操纵与欺骗",
+        "tact": "M6-5 + P8-5",
+        "judge": "操纵/欺骗用户行为",
+        "case": "信任利用类",
+        "status": "verified"
+      },
+      {
+        "id": "EU02",
+        "name": "利用弱点（年龄/残疾）",
+        "tact": "M6-5 / P8-5 / P7-1",
+        "judge": "利用群体弱点",
+        "case": "信任利用类",
+        "status": "verified"
+      },
+      {
+        "id": "EU03",
+        "name": "社会评分",
+        "tact": "M2-5 / P7-1 / P7-3",
+        "judge": "基于社会行为评分",
+        "case": "偏见类",
+        "status": "verified"
+      },
+      {
+        "id": "EU04",
+        "name": "个人犯罪风险评估",
+        "tact": "P7-1",
+        "judge": "机制面（偏见）；用途属治理域",
+        "case": "偏见类",
+        "status": "verified"
+      },
+      {
+        "id": "EU05",
+        "name": "无目标抓脸建库",
+        "tact": "治理域（无坐标）",
+        "judge": "TACT 正确拒绝——用途类非错误机制",
+        "case": "—",
+        "status": "verified_refused"
+      },
+      {
+        "id": "EU06",
+        "name": "情绪识别（工作/教育）",
+        "tact": "P7-1",
+        "judge": "机制面（偏见）；场景属治理域",
+        "case": "偏见类",
+        "status": "verified"
+      },
+      {
+        "id": "EU07",
+        "name": "生物特征分类推断受保护特征",
+        "tact": "P7-1 / M2-5",
+        "judge": "受保护特征推断",
+        "case": "偏见类",
+        "status": "verified"
+      },
+      {
+        "id": "EU08",
+        "name": "公共空间实时生物识别",
+        "tact": "治理域（无坐标）",
+        "judge": "TACT 正确拒绝——用途类非错误机制",
+        "case": "—",
+        "status": "verified_refused"
+      },
+      {
+        "id": "EU09",
+        "name": "非自愿露骨内容生成",
+        "tact": "P8-2 / P8-6",
+        "judge": "深度伪造/违禁内容输出",
+        "case": "deepfake 类",
+        "status": "verified"
+      }
+    ],
+    "ATLAS": [
+      {
+        "id": "AT01",
+        "tactic": "Initial Access / Execution",
+        "tact": "M6-3 / M6-6 / M6-4",
+        "case": "Gemini 入侵 INC-01",
+        "status": "verified"
+      },
+      {
+        "id": "AT02",
+        "tactic": "Persistence / 提权 / 防御规避",
+        "tact": "M6-11 / M6-4",
+        "case": "德语 wiki 留言板 INC-05",
+        "status": "verified"
+      },
+      {
+        "id": "AT03",
+        "tactic": "凭证访问",
+        "tact": "M4-2",
+        "case": "凭证泄露类",
+        "status": "verified"
+      },
+      {
+        "id": "AT04",
+        "tactic": "收集 / 影响",
+        "tact": "M2-2 / P1-8",
+        "case": "数据篡改影响类",
+        "status": "verified"
+      },
+      {
+        "id": "AT05",
+        "tactic": "Exfiltration 外传",
+        "tact": "M6-6",
+        "judge": "v2.7.8 '传输/写入'修复直接闭合",
+        "case": "ZCode 上传代码 C07",
+        "status": "verified"
+      },
+      {
+        "id": "AT06",
+        "tactic": "模型访问 / 发现",
+        "tact": "M6-9 / M6-6",
+        "case": "蒸馏提取类",
+        "status": "verified"
+      },
+      {
+        "id": "AT07",
+        "tactic": "Recon / 资源开发 / 攻击准备",
+        "tact": "越界声明（无坐标）",
+        "judge": "TACT 正确拒绝——攻击准备非系统错误机制",
+        "case": "—",
+        "status": "verified_refused"
+      }
+    ],
+    "AGENTIC": [
+      {
+        "id": "ASI01",
+        "name": "Agent Goal Hijack",
+        "tact": "M6-3 + M5-8 + P6-4",
+        "judge": "注入改写智能体整体目标（非单轮动作），行为被导向攻击者目标",
+        "case": "M6-3 目标劫持判据同构（Agentic 表现域）",
+        "status": "verified"
+      },
+      {
+        "id": "ASI02",
+        "name": "Tool Misuse and Exploitation",
+        "tact": "M6-6 / M7-3 + P5-2",
+        "judge": "合法工具/能力被误用或越界调用",
+        "case": "M6-6 自主越权、M7-3 越权承接同构",
+        "status": "verified"
+      },
+      {
+        "id": "ASI03",
+        "name": "Identity & Privilege Abuse",
+        "tact": "M7-3 + P5-2 / M6-6",
+        "judge": "身份与权限被滥用，超出授予范围",
+        "case": "M7-3 越权承接同构",
+        "status": "verified"
+      },
+      {
+        "id": "ASI04",
+        "name": "Agentic Supply Chain Vulnerabilities",
+        "tact": "M6-1 + P8-8",
+        "judge": "Agent 依赖组件/工具/技能供应链被植入",
+        "case": "M6-1 供应链同构",
+        "status": "verified"
+      },
+      {
+        "id": "ASI05",
+        "name": "Unexpected Code Execution",
+        "tact": "M8-8 + M8-5 + P8-4",
+        "judge": "Agent 输出/行为导致未预期的代码执行或沙箱逃逸",
+        "case": "M8-8 输出未校验、M8-5 沙箱逃逸判据同构",
+        "status": "hypothesis"
+      },
+      {
+        "id": "ASI06",
+        "name": "Memory & Context Poisoning",
+        "tact": "M6-4 + P3-5",
+        "judge": "记忆/上下文被投毒并后续持续引用",
+        "case": "M6-4 记忆投毒同构",
+        "status": "verified"
+      },
+      {
+        "id": "ASI07",
+        "name": "Insecure Inter-Agent Communication",
+        "tact": "M6-2 + P8-9",
+        "judge": "Agent 间通信无认证/被劫持/明文流转",
+        "case": "M6-2 不安全通信判据（Agentic 案例待补）",
+        "status": "hypothesis"
+      },
+      {
+        "id": "ASI08",
+        "name": "Cascading Failures",
+        "tact": "M8-6 + P4-10",
+        "judge": "单点失败沿 Agent 链级联放大无拦截",
+        "case": "M8-6 错误级联同构",
+        "status": "verified"
+      },
+      {
+        "id": "ASI09",
+        "name": "Human-Agent Trust Exploitation",
+        "tact": "M6-5 + P8-5",
+        "judge": "用户对 Agent 过度信任被利用做高风险决策",
+        "case": "M6-5 信任利用同构",
+        "status": "verified"
+      },
+      {
+        "id": "ASI10",
+        "name": "Rogue Agents",
+        "tact": "M8 族 / M6-6（M9 待 ratify，不落子码）",
+        "judge": "Agent 行为超出预期约束/自发越界",
+        "case": "M9 母坐标待真实案例 ratify，暂不落子码",
+        "status": "hypothesis"
+      }
+    ]
+  },
+  "reverse": [
+    {
+      "tact": "M2-2",
+      "name": "事实冲突",
+      "frameworks": [
+        "OWASP LLM09",
+        "NIST ②",
+        "ATLAS 影响"
+      ],
+      "called": "错误信息 / Confabulation / 数据破坏",
+      "status": "verified"
+    },
+    {
+      "tact": "M2-5",
+      "name": "算法歧视",
+      "frameworks": [
+        "NIST ⑥",
+        "EU ③⑦"
+      ],
+      "called": "有害偏见 / 社会评分·生物特征推断",
+      "status": "verified"
+    },
+    {
+      "tact": "M4-2",
+      "name": "凭证泄露",
+      "frameworks": [
+        "OWASP LLM02",
+        "NIST ③",
+        "ATLAS 凭证"
+      ],
+      "called": "敏感信息泄露 / 数据隐私 / 凭证访问",
+      "status": "verified"
+    },
+    {
+      "tact": "M5 族",
+      "name": "目标偏移",
+      "frameworks": [
+        "NIST ⑫"
+      ],
+      "called": "价值对齐",
+      "status": "verified"
+    },
+    {
+      "tact": "M6-1",
+      "name": "供应链漏洞",
+      "frameworks": [
+        "OWASP LLM03",
+        "NIST ⑨",
+        "AGENTIC ASI04"
+      ],
+      "called": "供应链 / 信息安全",
+      "status": "verified"
+    },
+    {
+      "tact": "M6-3",
+      "name": "提示注入",
+      "frameworks": [
+        "OWASP LLM01/08",
+        "ATLAS Initial Access",
+        "AGENTIC ASI01/06"
+      ],
+      "called": "提示注入",
+      "status": "verified"
+    },
+    {
+      "tact": "M6-4",
+      "name": "记忆投毒",
+      "frameworks": [
+        "OWASP LLM08",
+        "ATLAS Persistence",
+        "AGENTIC ASI06"
+      ],
+      "called": "向量弱点 / 驻留",
+      "status": "verified"
+    },
+    {
+      "tact": "M6-5",
+      "name": "信任利用",
+      "frameworks": [
+        "EU ①②",
+        "NIST ⑦⑫",
+        "AGENTIC ASI09"
+      ],
+      "called": "有害操纵 / 过度依赖",
+      "status": "verified"
+    },
+    {
+      "tact": "M6-6",
+      "name": "自主越权访问",
+      "frameworks": [
+        "ATLAS Exfiltration / Initial Access / Persistence",
+        "AGENTIC ASI02/03/10"
+      ],
+      "called": "外传·初始访问·驻留",
+      "status": "verified"
+    },
+    {
+      "tact": "M6-7/M6-8",
+      "name": "投毒",
+      "frameworks": [
+        "OWASP LLM04"
+      ],
+      "called": "数据与模型投毒",
+      "status": "verified"
+    },
+    {
+      "tact": "M6-9",
+      "name": "能力提取",
+      "frameworks": [
+        "ATLAS 模型访问"
+      ],
+      "called": "模型蒸馏",
+      "status": "verified"
+    },
+    {
+      "tact": "M6-11",
+      "name": "监管规避",
+      "frameworks": [
+        "NIST ①",
+        "ATLAS 防御规避"
+      ],
+      "called": "CBRN 信息 / 防御规避",
+      "status": "verified"
+    },
+    {
+      "tact": "M7-3",
+      "name": "越权承接",
+      "frameworks": [
+        "OWASP LLM06",
+        "AGENTIC ASI03"
+      ],
+      "called": "过度代理",
+      "status": "verified"
+    },
+    {
+      "tact": "M8-7",
+      "name": "无节制消耗",
+      "frameworks": [
+        "OWASP LLM10",
+        "NIST ⑤"
+      ],
+      "called": "无限消耗 / 环境影响",
+      "status": "verified"
+    },
+    {
+      "tact": "M8-8",
+      "name": "输出未校验",
+      "frameworks": [
+        "OWASP LLM05",
+        "AGENTIC ASI05"
+      ],
+      "called": "不当输出处理",
+      "status": "verified"
+    },
+    {
+      "tact": "P5-5",
+      "name": "任务规范不遵守",
+      "frameworks": [
+        "NIST ①④⑪"
+      ],
+      "called": "违禁内容输出",
+      "status": "verified"
+    },
+    {
+      "tact": "P6-4",
+      "name": "提示注入",
+      "frameworks": [
+        "OWASP LLM01"
+      ],
+      "called": "提示注入",
+      "status": "verified"
+    },
+    {
+      "tact": "P7-1",
+      "name": "算法歧视",
+      "frameworks": [
+        "NIST ⑥",
+        "EU ③⑥⑦"
+      ],
+      "called": "偏见 / 禁止实践",
+      "status": "verified"
+    },
+    {
+      "tact": "P7-3",
+      "name": "公平分配无制动",
+      "frameworks": [
+        "EU ③"
+      ],
+      "called": "社会评分",
+      "status": "verified"
+    },
+    {
+      "tact": "P8-2",
+      "name": "深度伪造",
+      "frameworks": [
+        "NIST ⑧",
+        "EU ⑨"
+      ],
+      "called": "信息完整性 / 露骨内容",
+      "status": "verified"
+    },
+    {
+      "tact": "P8-3",
+      "name": "凭证泄露",
+      "frameworks": [
+        "OWASP LLM02",
+        "NIST ③"
+      ],
+      "called": "敏感信息 / 数据隐私",
+      "status": "verified"
+    },
+    {
+      "tact": "P8-4",
+      "name": "沙箱逃逸",
+      "frameworks": [
+        "ATLAS Initial Access",
+        "AGENTIC ASI05"
+      ],
+      "called": "越界",
+      "status": "verified"
+    },
+    {
+      "tact": "P8-5",
+      "name": "信任利用",
+      "frameworks": [
+        "EU ①②",
+        "NIST ⑦",
+        "AGENTIC ASI09"
+      ],
+      "called": "操纵 / 过度依赖",
+      "status": "verified"
+    },
+    {
+      "tact": "P8-6",
+      "name": "记忆复现",
+      "frameworks": [
+        "OWASP LLM02",
+        "NIST ①④⑪",
+        "EU ⑨"
+      ],
+      "called": "敏感信息 / 违禁内容",
+      "status": "verified"
+    },
+    {
+      "tact": "P8-7",
+      "name": "监管规避",
+      "frameworks": [
+        "ATLAS 防御规避"
+      ],
+      "called": "防御规避",
+      "status": "verified"
+    },
+    {
+      "tact": "P8-8",
+      "name": "供应链漏洞",
+      "frameworks": [
+        "OWASP LLM03"
+      ],
+      "called": "供应链",
+      "status": "verified"
+    },
+    {
+      "tact": "M6-2",
+      "name": "不安全通信",
+      "frameworks": [
+        "AGENTIC ASI07"
+      ],
+      "called": "不安全多智能体通信",
+      "status": "hypothesis"
+    },
+    {
+      "tact": "M8-6",
+      "name": "错误级联无拦截",
+      "frameworks": [
+        "AGENTIC ASI08"
+      ],
+      "called": "级联失败",
+      "status": "verified"
+    },
+    {
+      "tact": "M9",
+      "name": "自发协作（待 ratify）",
+      "frameworks": [
+        "AGENTIC ASI10"
+      ],
+      "called": "Rogue Agents（母坐标待 ratify，不落子码）",
+      "status": "hypothesis"
+    },
+    {
+      "tact": "P8-9",
+      "name": "不安全通信",
+      "frameworks": [
+        "AGENTIC ASI07"
+      ],
+      "called": "不安全多智能体通信",
+      "status": "hypothesis"
+    },
+    {
+      "tact": "P4-10",
+      "name": "错误级联无拦截",
+      "frameworks": [
+        "AGENTIC ASI08"
+      ],
+      "called": "级联失败",
+      "status": "verified"
+    },
+    {
+      "tact": "P3-5",
+      "name": "记忆投毒",
+      "frameworks": [
+        "AGENTIC ASI06"
+      ],
+      "called": "记忆与上下文投毒",
+      "status": "verified"
+    }
+  ]
+}
