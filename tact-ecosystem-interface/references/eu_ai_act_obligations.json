@@ -1,0 +1,48 @@
+{
+  "asset": "eu_ai_act_obligations",
+  "bound_to": "tact v2.7.8",
+  "regulation": "Regulation (EU) 2024/1689 (EU AI Act)",
+  "generated": "2026-09-29",
+  "note": "坐标→高风险义务映射。医疗 AI 高风险地位来自 Art.6(1)+Annex I（MDR 医疗器械安全组件）。坐标命中≠违反义务——映射是触发线索，需对照性能基准与条文原文。条文绑定 2026-09 状态，EU 指引文件持续发布，细化义务以官方最新为准。",
+  "high_risk_basis": {
+    "article": "Art. 6(1) + Annex I",
+    "reason": "医疗 AI 是 MDR (EU) 2017/745 医疗器械的安全组件，自动归高风险（不受 Annex III 限制）",
+    "timeline_note": "透明度条款已进入 2026-08 生效期；完整义务适用时间线以欧盟官方分期为准"
+  },
+  "forward": [
+    {"tact": "M2-2", "name": "事实冲突（幻觉/误判）", "articles": ["Art.15 准确性", "Art.13 透明度"], "requirement": "达到既定准确度水平；向部署者告知系统限制", "action": "变异解读输出标注'拟真幻觉高风险'；向临床端披露准确率与已知偏倚", "status": "verified"},
+    {"tact": "M2-3", "name": "自我评估失准（自信断言）", "articles": ["Art.13 透明度", "Art.14 人类监督"], "requirement": "告知不确定性；人类能理解并质疑输出", "action": "报告附置信度区间；高置信低证据输出强制复核", "status": "verified"},
+    {"tact": "M2-5", "name": "算法歧视", "articles": ["Art.10 数据治理", "Art.14 人类监督"], "requirement": "训练数据代表性、偏倚检测；人类监督识别歧视结果", "action": "选胚模型要求分性别/族裔性能披露；偏倚对照审计", "status": "verified"},
+    {"tact": "M3-1", "name": "推导跳跃（链式幻觉）", "articles": ["Art.12 记录保存"], "requirement": "自动记录日志以追溯输出", "action": "保存推理链日志，支持回溯审查", "status": "verified"},
+    {"tact": "M4-2", "name": "凭证泄露", "articles": ["Art.15 网络安全"], "requirement": "抵御未授权访问/泄露", "action": "检测/医疗数据管道凭证管理", "status": "verified"},
+    {"tact": "M4-7", "name": "系统提示泄露", "articles": ["Art.13 透明度（信息边界）"], "requirement": "输出不泄露内部指令", "action": "提示文本脱敏审查", "status": "verified"},
+    {"tact": "M6-3", "name": "提示注入", "articles": ["Art.15 鲁棒性"], "requirement": "抵御对抗输入", "action": "患者输入自由文本场景注入防护", "status": "verified"},
+    {"tact": "M6-6", "name": "自主越权访问", "articles": ["Art.14 人类监督", "Art.15 网络安全"], "requirement": "授权边界控制；防越界", "action": "智能体工具链最小权限；数据外传闸口", "status": "verified"},
+    {"tact": "M6-7/M6-8", "name": "训练/检索投毒", "articles": ["Art.10 数据治理"], "requirement": "数据来源审查、污染防控", "action": "变异数据库/知识库来源审计", "status": "verified"},
+    {"tact": "M7-3", "name": "越权承接（过度代理）", "articles": ["Art.14 人类监督"], "requirement": "人类对授权边界负责", "action": "AI 不得直接给患者结论；遗传咨询师最终裁决", "status": "verified"},
+    {"tact": "M8-3", "name": "记忆衰减（长对话失忆）", "articles": ["Art.9 风险管理"], "requirement": "生命周期持续评估", "action": "长会话患者病史跟踪复核", "status": "verified"},
+    {"tact": "M8-7", "name": "无节制消耗", "articles": ["Art.9（运营风险面）"], "requirement": "资源可预期性", "action": "部署成本与调用监控", "status": "verified"},
+    {"tact": "M8-8", "name": "输出未校验", "articles": ["Art.14 人类监督", "Art.15"], "requirement": "输出经人类闸口", "action": "'AI 产出一律视为待核验线索'制度化", "status": "verified"},
+    {"tact": "P7-1", "name": "公平失衡", "articles": ["Art.10 数据治理", "Art.9"], "requirement": "群体公平监测", "action": "定期分群体性能抽检", "status": "verified"}
+  ],
+  "general_obligations": [
+    {"article": "Art.12 记录保存", "requirement": "高风险系统自动记录日志（保 6 个月）", "tact_link": "过闸事件台账直接满足该义务的数据基础"},
+    {"article": "Art.73 严重事故报告", "requirement": "致伤/致死/严重健康损害事件须报告当局", "tact_link": "伤害事件坐标化后，报告材料可直接引用坐标+判据+验证路径"}
+  ],
+  "reverse_obligation_monitoring": [
+    {"article": "Art.9 风险管理", "requirement": "识别/分析/评估风险并持续更新", "monitor_coordinates": "过闸台账滚动：新错误坐标出现即更新风险登记"},
+    {"article": "Art.10 数据治理", "requirement": "训练数据代表性、偏倚", "monitor_coordinates": "过 M2-5/P7-1 闸：分群体性能抽检"},
+    {"article": "Art.12 记录保存", "requirement": "自动日志 6 个月", "monitor_coordinates": "事件坐标标注 = 结构化日志"},
+    {"article": "Art.13 透明度", "requirement": "告知用户 AI 交互与限制", "monitor_coordinates": "M2-3/M2-2 命中率作为'限制披露'数据"},
+    {"article": "Art.14 人类监督", "requirement": "人类理解、监控、干预", "monitor_coordinates": "M7-3/M8-8/M6-6 命中 → 授权边界审计"},
+    {"article": "Art.15 准确/鲁棒/安全", "requirement": "性能达标、抗对抗、防泄露", "monitor_coordinates": "M2-2/M6-3/M4-2 命中率作为验收指标"},
+    {"article": "Art.73 严重事故报告", "requirement": "伤害事件上报", "monitor_coordinates": "伤害类事件（P8-5 等）自动进上报流程"}
+  ],
+  "compliance_checklist": [
+    {"hit_coordinate": "M2-2/M2-3", "obligation": "Art.13/15", "action": "变异解读输出附置信度+限制声明", "record": "报告模板"},
+    {"hit_coordinate": "M2-5/P7-1", "obligation": "Art.10/14", "action": "供应商分群体性能报告", "record": "采购档案"},
+    {"hit_coordinate": "M7-3/M8-8", "obligation": "Art.14", "action": "AI 结论须遗传咨询师签核", "record": "工作流 S-SOP"},
+    {"hit_coordinate": "M6-3/M4-2/M6-6", "obligation": "Art.15", "action": "工具链安全审计", "record": "安全台账"},
+    {"hit_coordinate": "任意坐标命中伤害", "obligation": "Art.73", "action": "触发上报流程", "record": "事故台账"}
+  ]
+}
