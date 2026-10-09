@@ -1,0 +1,241 @@
+{
+  "asset": "eu_ai_act_obligations",
+  "bound_to": "tact v2.7.8",
+  "regulation": "Regulation (EU) 2024/1689 (EU AI Act)",
+  "generated": "2026-09-29",
+  "note": "Coordinate→high-risk obligation mapping. The high-risk status of medical AI derives from Art.6(1)+Annex I (a safety component of an MDR medical device). A coordinate hit ≠ obligation violation — the mapping is a trigger clue; judge against the performance baseline and the clause original text. The clauses are bound to the 2026-09 status; EU guidance documents are still being published, so detailed obligations follow the latest official version.",
+  "high_risk_basis": {
+    "article": "Art. 6(1) + Annex I",
+    "reason": "Medical AI is a safety component of an MDR (EU) 2017/745 medical device, automatically classified as high risk (not limited by Annex III)",
+    "timeline_note": "The transparency clause has entered its 2026-08 effective period; the full obligation-application timeline follows the EU official phasing"
+  },
+  "forward": [
+    {
+      "tact": "M2-2",
+      "name": "Factual Conflict (hallucination/misjudgment)",
+      "articles": [
+        "Art.15 Accuracy",
+        "Art.13 Transparency"
+      ],
+      "requirement": "reach the agreed accuracy level; inform deployers of system limitations",
+      "action": "label variant-interpretation output as 'high-risk for plausible hallucination'; disclose accuracy and known bias to the clinical side",
+      "status": "verified"
+    },
+    {
+      "tact": "M2-3",
+      "name": "Self-Assessment Miscalibration (confident assertion)",
+      "articles": [
+        "Art.13 Transparency",
+        "Art.14 Human Oversight"
+      ],
+      "requirement": "communicate uncertainty; humans can understand and challenge the output",
+      "action": "attach confidence intervals to reports; force review of high-confidence/low-evidence output",
+      "status": "verified"
+    },
+    {
+      "tact": "M2-5",
+      "name": "Algorithmic Discrimination",
+      "articles": [
+        "Art.10 Data Governance",
+        "Art.14 Human Oversight"
+      ],
+      "requirement": "representative training data, bias detection; human oversight to identify discriminatory results",
+      "action": "embryo-selection models require sex/ethnicity performance disclosure; bias cross-check audits",
+      "status": "verified"
+    },
+    {
+      "tact": "M3-1",
+      "name": "Inference Jump (chained hallucination)",
+      "articles": [
+        "Art.12 Record-Keeping"
+      ],
+      "requirement": "automatically log records to trace the output",
+      "action": "retain reasoning-chain logs to support retrospective review",
+      "status": "verified"
+    },
+    {
+      "tact": "M4-2",
+      "name": "Credential Leakage",
+      "articles": [
+        "Art.15 Cybersecurity"
+      ],
+      "requirement": "withstand unauthorized access/disclosure",
+      "action": "credential management for the detection/medical-data pipeline",
+      "status": "verified"
+    },
+    {
+      "tact": "M4-7",
+      "name": "System-Prompt Leakage",
+      "articles": [
+        "Art.13 Transparency (information boundary)"
+      ],
+      "requirement": "the output must not disclose internal instructions",
+      "action": "prompt-text de-identification review",
+      "status": "verified"
+    },
+    {
+      "tact": "M6-3",
+      "name": "Prompt Injection",
+      "articles": [
+        "Art.15 Robustness"
+      ],
+      "requirement": "withstand adversarial input",
+      "action": "injection protection for free-text patient-input scenarios",
+      "status": "verified"
+    },
+    {
+      "tact": "M6-6",
+      "name": "Autonomous Privilege Escalation",
+      "articles": [
+        "Art.14 Human Oversight",
+        "Art.15 Cybersecurity"
+      ],
+      "requirement": "authorization-boundary control; prevent boundary-crossing",
+      "action": "least privilege for the agent tool chain; data-exfiltration gate",
+      "status": "verified"
+    },
+    {
+      "tact": "M6-7/M6-8",
+      "name": "Training/Retrieval Poisoning",
+      "articles": [
+        "Art.10 Data Governance"
+      ],
+      "requirement": "data-source review, contamination prevention",
+      "action": "source audit of the variant database / knowledge base",
+      "status": "verified"
+    },
+    {
+      "tact": "M7-3",
+      "name": "Unauthorized Task Assumption (excessive agency)",
+      "articles": [
+        "Art.14 Human Oversight"
+      ],
+      "requirement": "humans are responsible for the authorization boundary",
+      "action": "AI must not give conclusions directly to patients; the genetic counselor makes the final decision",
+      "status": "verified"
+    },
+    {
+      "tact": "M8-3",
+      "name": "Memory Decay (long-conversation amnesia)",
+      "articles": [
+        "Art.9 Risk Management"
+      ],
+      "requirement": "continuous assessment over the lifecycle",
+      "action": "track and re-check patient history in long sessions",
+      "status": "verified"
+    },
+    {
+      "tact": "M8-7",
+      "name": "Unchecked Consumption",
+      "articles": [
+        "Art.9 (operational risk facet)"
+      ],
+      "requirement": "resource predictability",
+      "action": "deployment-cost and invocation monitoring",
+      "status": "verified"
+    },
+    {
+      "tact": "M8-8",
+      "name": "Unverified Output",
+      "articles": [
+        "Art.14 Human Oversight",
+        "Art.15"
+      ],
+      "requirement": "output passes through a human gate",
+      "action": "institutionalize 'all AI output is a pending-verification clue'",
+      "status": "verified"
+    },
+    {
+      "tact": "P7-1",
+      "name": "Fairness Imbalance",
+      "articles": [
+        "Art.10 Data Governance",
+        "Art.9"
+      ],
+      "requirement": "group fairness monitoring",
+      "action": "periodic per-group performance sampling",
+      "status": "verified"
+    }
+  ],
+  "general_obligations": [
+    {
+      "article": "Art.12 Record-Keeping",
+      "requirement": "high-risk systems automatically log records (retain 6 months)",
+      "tact_link": "the gate-passing event ledger directly provides the data basis for this obligation"
+    },
+    {
+      "article": "Art.73 Serious-Incident Reporting",
+      "requirement": "incidents causing injury/death/serious health damage must be reported to the authorities",
+      "tact_link": "after an injury event is coordinate-coded, the report material can directly cite coordinate + criterion + verification path"
+    }
+  ],
+  "reverse_obligation_monitoring": [
+    {
+      "article": "Art.9 Risk Management",
+      "requirement": "identify/analyze/assess risks and continuously update",
+      "monitor_coordinates": "rolling gate ledger: a new error coordinate appearing triggers a risk-register update"
+    },
+    {
+      "article": "Art.10 Data Governance",
+      "requirement": "representative training data, bias",
+      "monitor_coordinates": "passing the M2-5/P7-1 gate: per-group performance sampling"
+    },
+    {
+      "article": "Art.12 Record-Keeping",
+      "requirement": "automatic logs for 6 months",
+      "monitor_coordinates": "event coordinate annotation = structured log"
+    },
+    {
+      "article": "Art.13 Transparency",
+      "requirement": "inform users of AI interaction and limitations",
+      "monitor_coordinates": "M2-3/M2-2 hit rate as 'limitation disclosure' data"
+    },
+    {
+      "article": "Art.14 Human Oversight",
+      "requirement": "humans understand, monitor, and intervene",
+      "monitor_coordinates": "M7-3/M8-8/M6-6 hits → authorization-boundary audit"
+    },
+    {
+      "article": "Art.15 Accuracy/Robustness/Safety",
+      "requirement": "performance meets standard, adversarial resistance, leak prevention",
+      "monitor_coordinates": "M2-2/M6-3/M4-2 hit rate as acceptance metric"
+    },
+    {
+      "article": "Art.73 Serious-Incident Reporting",
+      "requirement": "report injury events",
+      "monitor_coordinates": "injury-type events (e.g., P8-5) automatically enter the reporting flow"
+    }
+  ],
+  "compliance_checklist": [
+    {
+      "hit_coordinate": "M2-2/M2-3",
+      "obligation": "Art.13/15",
+      "action": "variant-interpretation output attaches confidence + limitation statement",
+      "record": "report template"
+    },
+    {
+      "hit_coordinate": "M2-5/P7-1",
+      "obligation": "Art.10/14",
+      "action": "vendor per-group performance report",
+      "record": "procurement file"
+    },
+    {
+      "hit_coordinate": "M7-3/M8-8",
+      "obligation": "Art.14",
+      "action": "AI conclusions require genetic-counselor sign-off",
+      "record": "workflow S-SOP"
+    },
+    {
+      "hit_coordinate": "M6-3/M4-2/M6-6",
+      "obligation": "Art.15",
+      "action": "tool-chain security audit",
+      "record": "security ledger"
+    },
+    {
+      "hit_coordinate": "any coordinate hit causing injury",
+      "obligation": "Art.73",
+      "action": "trigger the reporting flow",
+      "record": "incident ledger"
+    }
+  ]
+}

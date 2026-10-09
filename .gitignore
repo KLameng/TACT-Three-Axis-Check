@@ -1,0 +1,19 @@
+# Build / internal artifacts (not committed)
+_work/
+
+# Backup files (not committed)
+*.bak*
+*.bak
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Local config (may contain API keys, not committed)
+config.json
+.env
+
+# OS / editor misc
+Thumbs.db
+.DS_Store
+*.swp

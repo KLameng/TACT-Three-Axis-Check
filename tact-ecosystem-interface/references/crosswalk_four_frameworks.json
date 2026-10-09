@@ -1,0 +1,727 @@
+{
+  "asset": "crosswalk",
+  "bound_to": "tact v2.7.8",
+  "framework_versions": {
+    "OWASP": "OWASP Top 10 for LLM 2025",
+    "NIST": "NIST AI RMF / AI 600-1",
+    "EU_AI_ACT": "Regulation (EU) 2024/1689",
+    "ATLAS": "MITRE ATLAS 2026",
+    "AGENTIC": "OWASP Top 10 for Agentic Applications 2026"
+  },
+  "generated": "2026-09-29",
+  "note": "Bidirectional translation hub: forward (framework entry→TACT coordinate) 48 items (OWASP LLM 10 + NIST 12 + EU 9 + ATLAS 7 + AGENTIC 10) + reverse (TACT coordinate→framework entry) 32 items; data derived from a 45-item verification report (implemented rate 90%, including ATLAS technical-layer verification). Each mapping carries a criterion + case; verification_status distinguishes verified vs pending-verification hypothesis. AGENTIC (OWASP Top 10 for Agentic Applications 2026) is the new upstream of the Agent era; most mappings are isomorphic with existing verified coordinate mechanisms; some (ASI05/07/10) are marked hypothesis, awaiting corroboration by real Agentic incident cases. After a framework-version upgrade, re-verify.",
+  "forward": {
+    "OWASP": [
+      {
+        "id": "LLM01",
+        "name": "Prompt Injection",
+        "tact": "M6-3 + P6-4",
+        "judge": "external input carrying instructions is executed as genuine",
+        "case": "AISI UK social engineering (forged identity + injection) C06",
+        "status": "verified"
+      },
+      {
+        "id": "LLM02",
+        "name": "Sensitive Information Disclosure",
+        "tact": "M1-1 / M4-2 / P8-3 / P8-6",
+        "judge": "training corpus or runtime spits out sensitive information",
+        "case": "memory-reproduction PII disclosure class",
+        "status": "verified"
+      },
+      {
+        "id": "LLM03",
+        "name": "Supply Chain",
+        "tact": "M6-1 + P8-8",
+        "judge": "third-party component with vulnerabilities / unknown origin",
+        "case": "Hugging Face zero-day breach C05",
+        "status": "verified"
+      },
+      {
+        "id": "LLM04",
+        "name": "Data & Model Poisoning",
+        "tact": "M6-7 + M6-8",
+        "judge": "attacker actively injects malicious data",
+        "case": "OWASP poisoning scenario",
+        "status": "verified"
+      },
+      {
+        "id": "LLM05",
+        "name": "Improper Output Handling",
+        "tact": "M8-8",
+        "judge": "output executed downstream without validation",
+        "case": "Meta agent flawed suggestion adopted C17",
+        "status": "verified"
+      },
+      {
+        "id": "LLM06",
+        "name": "Excessive Agency",
+        "tact": "M7-3 + P5-2",
+        "judge": "undertakes tasks beyond the authorized boundary",
+        "case": "daily-report E1/E2 unauthorized task assumption",
+        "status": "verified"
+      },
+      {
+        "id": "LLM07",
+        "name": "System-Prompt Leakage",
+        "tact": "M4-2",
+        "judge": "internal prompt text carried out (the M4-2 desc needs the \"configuration/prompt-text\" example extended; not yet fixed)",
+        "case": "to be supplemented",
+        "status": "hypothesis"
+      },
+      {
+        "id": "LLM08",
+        "name": "Vector & Embedding Weaknesses",
+        "tact": "M6-3 / M6-8",
+        "judge": "retrieval-db poisoning / indirect injection",
+        "case": "retrieval-poisoning scenario",
+        "status": "verified"
+      },
+      {
+        "id": "LLM09",
+        "name": "Misinformation",
+        "tact": "M2-2 + P1-8",
+        "judge": "fabricated facts presented as truth",
+        "case": "Hangzhou hallucination infringement case C12",
+        "status": "verified"
+      },
+      {
+        "id": "LLM10",
+        "name": "Unbounded Consumption",
+        "tact": "M8-7 + P5-7",
+        "judge": "uncontrolled compute invocation",
+        "case": "DNS sandbox-escape resource consumption C04",
+        "status": "verified"
+      }
+    ],
+    "NIST": [
+      {
+        "id": "N01",
+        "name": "CBRN Weapon Information",
+        "tact": "P5-5 / P8-6 / M6-11",
+        "judge": "prohibited-content output / evasion",
+        "case": "general security-test class",
+        "status": "verified"
+      },
+      {
+        "id": "N02",
+        "name": "Confabulation (Hallucination)",
+        "tact": "M2-2 + P1-8",
+        "judge": "plausible-sounding hallucination",
+        "case": "Hangzhou hallucination case C12, medical report A13",
+        "status": "verified"
+      },
+      {
+        "id": "N03",
+        "name": "Data Privacy",
+        "tact": "M4-2 / P8-3 / P8-6",
+        "judge": "credential/privacy disclosure",
+        "case": "ZCode data exfiltration C07",
+        "status": "verified"
+      },
+      {
+        "id": "N04",
+        "name": "Dangerous/Violent/Hate Content",
+        "tact": "P5-5 / P8-6",
+        "judge": "prohibited content",
+        "case": "Yuanbao abuse INC-09",
+        "status": "verified"
+      },
+      {
+        "id": "N05",
+        "name": "Environmental Impact (Energy)",
+        "tact": "P5-7",
+        "judge": "unrestrained resource consumption",
+        "case": "LLM training energy class",
+        "status": "verified"
+      },
+      {
+        "id": "N06",
+        "name": "Harmful Bias & Homogenization",
+        "tact": "M2-5 / P7-1 / P7-2",
+        "judge": "systematic group difference",
+        "case": "PGT KIDScore gender bias",
+        "status": "verified"
+      },
+      {
+        "id": "N07",
+        "name": "Human-AI Over-Reliance",
+        "tact": "P4-8 / P8-5",
+        "judge": "human blindly trusts the system",
+        "case": "Winters case / medical A2",
+        "status": "verified"
+      },
+      {
+        "id": "N08",
+        "name": "Information Integrity (deepfake)",
+        "tact": "P8-2",
+        "judge": "deepfake",
+        "case": "AI face-swap fraud C22",
+        "status": "verified"
+      },
+      {
+        "id": "N09",
+        "name": "Information Security",
+        "tact": "M6 family / P8 family",
+        "judge": "vulnerability attack",
+        "case": "Gemini breach INC-01",
+        "status": "verified"
+      },
+      {
+        "id": "N10",
+        "name": "Intellectual Property",
+        "tact": "governance domain + P8-6",
+        "judge": "copyright-licensing disputes are governance",
+        "case": "NYT copyright case C11",
+        "status": "verified"
+      },
+      {
+        "id": "N11",
+        "name": "Obscenity/Denigration/Abuse",
+        "tact": "P5-5 / P8-6",
+        "judge": "prohibited content",
+        "case": "content-safety class",
+        "status": "verified"
+      },
+      {
+        "id": "N12",
+        "name": "Value Alignment & Usability",
+        "tact": "M5 family / M6-5 / M8",
+        "judge": "direction deviation / manipulation",
+        "case": "Bing Sydney C26",
+        "status": "verified"
+      }
+    ],
+    "EU_AI_ACT": [
+      {
+        "id": "EU01",
+        "name": "Harmful Manipulation & Deception",
+        "tact": "M6-5 + P8-5",
+        "judge": "manipulates/deceives user behavior",
+        "case": "trust-exploitation class",
+        "status": "verified"
+      },
+      {
+        "id": "EU02",
+        "name": "Exploiting Vulnerabilities (age/disability)",
+        "tact": "M6-5 / P8-5 / P7-1",
+        "judge": "exploits group vulnerabilities",
+        "case": "trust-exploitation class",
+        "status": "verified"
+      },
+      {
+        "id": "EU03",
+        "name": "Social Scoring",
+        "tact": "M2-5 / P7-1 / P7-3",
+        "judge": "scoring based on social behavior",
+        "case": "bias class",
+        "status": "verified"
+      },
+      {
+        "id": "EU04",
+        "name": "Individual Crime-Risk Assessment",
+        "tact": "P7-1",
+        "judge": "mechanism face (bias); use belongs to governance domain",
+        "case": "bias class",
+        "status": "verified"
+      },
+      {
+        "id": "EU05",
+        "name": "Untargeted Face-Scraping Database",
+        "tact": "governance domain (no coordinate)",
+        "judge": "TACT correctly refuses — a use-type, not an error mechanism",
+        "case": "—",
+        "status": "verified_refused"
+      },
+      {
+        "id": "EU06",
+        "name": "Emotion Recognition (workplace/education)",
+        "tact": "P7-1",
+        "judge": "mechanism face (bias); scenario belongs to governance domain",
+        "case": "bias class",
+        "status": "verified"
+      },
+      {
+        "id": "EU07",
+        "name": "Biometric Categorization Inferring Protected Attributes",
+        "tact": "P7-1 / M2-5",
+        "judge": "protected-attribute inference",
+        "case": "bias class",
+        "status": "verified"
+      },
+      {
+        "id": "EU08",
+        "name": "Real-Time Biometrics in Public Spaces",
+        "tact": "governance domain (no coordinate)",
+        "judge": "TACT correctly refuses — a use-type, not an error mechanism",
+        "case": "—",
+        "status": "verified_refused"
+      },
+      {
+        "id": "EU09",
+        "name": "Non-Consensual Explicit Content Generation",
+        "tact": "P8-2 / P8-6",
+        "judge": "deepfake / prohibited-content output",
+        "case": "deepfake class",
+        "status": "verified"
+      }
+    ],
+    "ATLAS": [
+      {
+        "id": "AT01",
+        "tactic": "Initial Access / Execution",
+        "tact": "M6-3 / M6-6 / M6-4",
+        "case": "Gemini breach INC-01",
+        "status": "verified",
+        "name": null
+      },
+      {
+        "id": "AT02",
+        "tactic": "Persistence / Privilege Escalation / Defense Evasion",
+        "tact": "M6-11 / M6-4",
+        "case": "German wiki message board INC-05",
+        "status": "verified",
+        "name": null
+      },
+      {
+        "id": "AT03",
+        "tactic": "Credential Access",
+        "tact": "M4-2",
+        "case": "credential-leakage class",
+        "status": "verified",
+        "name": null
+      },
+      {
+        "id": "AT04",
+        "tactic": "Collection / Impact",
+        "tact": "M2-2 / P1-8",
+        "case": "data-tampering-impact class",
+        "status": "verified",
+        "name": null
+      },
+      {
+        "id": "AT05",
+        "tactic": "Exfiltration",
+        "tact": "M6-6",
+        "judge": "the v2.7.8 \"transmit/write\" fix directly closes it",
+        "case": "ZCode code upload C07",
+        "status": "verified",
+        "name": null
+      },
+      {
+        "id": "AT06",
+        "tactic": "Model Access / Discovery",
+        "tact": "M6-9 / M6-6",
+        "case": "distillation-extraction class",
+        "status": "verified",
+        "name": null
+      },
+      {
+        "id": "AT07",
+        "tactic": "Recon / Resource Development / Attack Preparation",
+        "tact": "out-of-scope declaration (no coordinate)",
+        "judge": "TACT correctly refuses — attack preparation is not a system-error mechanism",
+        "case": "—",
+        "status": "verified_refused",
+        "name": null
+      }
+    ],
+    "AGENTIC": [
+      {
+        "id": "ASI01",
+        "name": "Agent Goal Hijack",
+        "tact": "M6-3 + M5-8 + P6-4",
+        "judge": "injection rewrites the agent's overall goal (not a single-turn action), steering behavior toward the attacker's goal",
+        "case": "M6-3 goal-hijack criterion isomorphic (Agentic manifestation domain)",
+        "status": "verified"
+      },
+      {
+        "id": "ASI02",
+        "name": "Tool Misuse and Exploitation",
+        "tact": "M6-6 / M7-3 + P5-2",
+        "judge": "legitimate tools/capabilities misused or invoked out of scope",
+        "case": "isomorphic to M6-6 autonomous privilege escalation, M7-3 unauthorized task assumption",
+        "status": "verified"
+      },
+      {
+        "id": "ASI03",
+        "name": "Identity & Privilege Abuse",
+        "tact": "M7-3 + P5-2 / M6-6",
+        "judge": "identity and privilege abused beyond the granted scope",
+        "case": "isomorphic to M7-3 unauthorized task assumption",
+        "status": "verified"
+      },
+      {
+        "id": "ASI04",
+        "name": "Agentic Supply Chain Vulnerabilities",
+        "tact": "M6-1 + P8-8",
+        "judge": "the Agent's dependency components/tools/skills supply chain is planted",
+        "case": "isomorphic to M6-1 supply chain",
+        "status": "verified"
+      },
+      {
+        "id": "ASI05",
+        "name": "Unexpected Code Execution",
+        "tact": "M8-8 + M8-5 + P8-4",
+        "judge": "agent output/behavior causes unexpected code execution or sandbox escape",
+        "case": "M8-8 unverified output, M8-5 sandbox-escape criterion isomorphic",
+        "status": "hypothesis"
+      },
+      {
+        "id": "ASI06",
+        "name": "Memory & Context Poisoning",
+        "tact": "M6-4 + P3-5",
+        "judge": "memory/context poisoned and subsequently referenced persistently",
+        "case": "isomorphic to M6-4 memory poisoning",
+        "status": "verified"
+      },
+      {
+        "id": "ASI07",
+        "name": "Insecure Inter-Agent Communication",
+        "tact": "M6-2 + P8-9",
+        "judge": "inter-agent communication without authentication / hijacked / plaintext flow",
+        "case": "M6-2 insecure-communication criterion (Agentic case pending)",
+        "status": "hypothesis"
+      },
+      {
+        "id": "ASI08",
+        "name": "Cascading Failures",
+        "tact": "M8-6 + P4-10",
+        "judge": "single-point failure cascades and amplifies along the agent chain with no interception",
+        "case": "isomorphic to M8-6 error cascade",
+        "status": "verified"
+      },
+      {
+        "id": "ASI09",
+        "name": "Human-Agent Trust Exploitation",
+        "tact": "M6-5 + P8-5",
+        "judge": "user's over-trust in the agent exploited to make high-risk decisions",
+        "case": "isomorphic to M6-5 trust exploitation",
+        "status": "verified"
+      },
+      {
+        "id": "ASI10",
+        "name": "Rogue Agents",
+        "tact": "M8 family / M6-6 (M9 pending ratify; no child code landed)",
+        "judge": "agent behavior exceeds expected constraints / spontaneously crosses boundaries",
+        "case": "M9 parent coordinate awaits real-case ratify; no child code landed for now",
+        "status": "hypothesis"
+      }
+    ]
+  },
+  "reverse": [
+    {
+      "tact": "M2-2",
+      "name": "Factual Conflict",
+      "frameworks": [
+        "OWASP LLM09",
+        "NIST ②",
+        "ATLAS Impact"
+      ],
+      "called": "Misinformation / Confabulation / data corruption",
+      "status": "verified"
+    },
+    {
+      "tact": "M2-5",
+      "name": "Algorithmic Discrimination",
+      "frameworks": [
+        "NIST ⑥",
+        "EU ③⑦"
+      ],
+      "called": "harmful bias / social scoring, biometric inference",
+      "status": "verified"
+    },
+    {
+      "tact": "M4-2",
+      "name": "Credential Leakage",
+      "frameworks": [
+        "OWASP LLM02",
+        "NIST ③",
+        "ATLAS Credential Access"
+      ],
+      "called": "sensitive-info disclosure / data privacy / credential access",
+      "status": "verified"
+    },
+    {
+      "tact": "M5 family",
+      "name": "Goal Drift",
+      "frameworks": [
+        "NIST ⑫"
+      ],
+      "called": "value alignment",
+      "status": "verified"
+    },
+    {
+      "tact": "M6-1",
+      "name": "Supply-Chain Vulnerability",
+      "frameworks": [
+        "OWASP LLM03",
+        "NIST ⑨",
+        "AGENTIC ASI04"
+      ],
+      "called": "supply chain / information security",
+      "status": "verified"
+    },
+    {
+      "tact": "M6-3",
+      "name": "Prompt Injection",
+      "frameworks": [
+        "OWASP LLM01/08",
+        "ATLAS Initial Access",
+        "AGENTIC ASI01/06"
+      ],
+      "called": "prompt injection",
+      "status": "verified"
+    },
+    {
+      "tact": "M6-4",
+      "name": "Memory Poisoning",
+      "frameworks": [
+        "OWASP LLM08",
+        "ATLAS Persistence",
+        "AGENTIC ASI06"
+      ],
+      "called": "vector weakness / persistence",
+      "status": "verified"
+    },
+    {
+      "tact": "M6-5",
+      "name": "Human-Agent Trust Exploitation",
+      "frameworks": [
+        "EU ①②",
+        "NIST ⑦⑫",
+        "AGENTIC ASI09"
+      ],
+      "called": "harmful manipulation / over-reliance",
+      "status": "verified"
+    },
+    {
+      "tact": "M6-6",
+      "name": "Autonomous Privilege Escalation",
+      "frameworks": [
+        "ATLAS Exfiltration / Initial Access / Persistence",
+        "AGENTIC ASI02/03/10"
+      ],
+      "called": "exfiltration, initial access, persistence",
+      "status": "verified"
+    },
+    {
+      "tact": "M6-7/M6-8",
+      "name": "Poisoning",
+      "frameworks": [
+        "OWASP LLM04"
+      ],
+      "called": "data & model poisoning",
+      "status": "verified"
+    },
+    {
+      "tact": "M6-9",
+      "name": "Capability Extraction",
+      "frameworks": [
+        "ATLAS Model Access"
+      ],
+      "called": "model distillation",
+      "status": "verified"
+    },
+    {
+      "tact": "M6-11",
+      "name": "Regulatory Evasion",
+      "frameworks": [
+        "NIST ①",
+        "ATLAS Defense Evasion"
+      ],
+      "called": "CBRN information / defense evasion",
+      "status": "verified"
+    },
+    {
+      "tact": "M7-3",
+      "name": "Unauthorized Task Assumption",
+      "frameworks": [
+        "OWASP LLM06",
+        "AGENTIC ASI03"
+      ],
+      "called": "excessive agency",
+      "status": "verified"
+    },
+    {
+      "tact": "M8-7",
+      "name": "Unchecked Consumption",
+      "frameworks": [
+        "OWASP LLM10",
+        "NIST ⑤"
+      ],
+      "called": "unbounded consumption / environmental impact",
+      "status": "verified"
+    },
+    {
+      "tact": "M8-8",
+      "name": "Unverified Output",
+      "frameworks": [
+        "OWASP LLM05",
+        "AGENTIC ASI05"
+      ],
+      "called": "improper output handling",
+      "status": "verified"
+    },
+    {
+      "tact": "P5-5",
+      "name": "Task-Spec Non-Compliance",
+      "frameworks": [
+        "NIST ①④⑪"
+      ],
+      "called": "prohibited-content output",
+      "status": "verified"
+    },
+    {
+      "tact": "P6-4",
+      "name": "Prompt Injection",
+      "frameworks": [
+        "OWASP LLM01"
+      ],
+      "called": "prompt injection",
+      "status": "verified"
+    },
+    {
+      "tact": "P7-1",
+      "name": "Algorithmic Discrimination",
+      "frameworks": [
+        "NIST ⑥",
+        "EU ③⑥⑦"
+      ],
+      "called": "bias / prohibited practices",
+      "status": "verified"
+    },
+    {
+      "tact": "P7-3",
+      "name": "Fair Allocation Without Brake",
+      "frameworks": [
+        "EU ③"
+      ],
+      "called": "social scoring",
+      "status": "verified"
+    },
+    {
+      "tact": "P8-2",
+      "name": "Deepfake",
+      "frameworks": [
+        "NIST ⑧",
+        "EU ⑨"
+      ],
+      "called": "information integrity / explicit content",
+      "status": "verified"
+    },
+    {
+      "tact": "P8-3",
+      "name": "Credential Leakage",
+      "frameworks": [
+        "OWASP LLM02",
+        "NIST ③"
+      ],
+      "called": "sensitive information / data privacy",
+      "status": "verified"
+    },
+    {
+      "tact": "P8-4",
+      "name": "Sandbox Escape",
+      "frameworks": [
+        "ATLAS Initial Access",
+        "AGENTIC ASI05"
+      ],
+      "called": "boundary-crossing",
+      "status": "verified"
+    },
+    {
+      "tact": "P8-5",
+      "name": "Human-Agent Trust Exploitation",
+      "frameworks": [
+        "EU ①②",
+        "NIST ⑦",
+        "AGENTIC ASI09"
+      ],
+      "called": "manipulation / over-reliance",
+      "status": "verified"
+    },
+    {
+      "tact": "P8-6",
+      "name": "Memory Reproduction",
+      "frameworks": [
+        "OWASP LLM02",
+        "NIST ①④⑪",
+        "EU ⑨"
+      ],
+      "called": "sensitive information / prohibited content",
+      "status": "verified"
+    },
+    {
+      "tact": "P8-7",
+      "name": "Regulatory Evasion",
+      "frameworks": [
+        "ATLAS Defense Evasion"
+      ],
+      "called": "defense evasion",
+      "status": "verified"
+    },
+    {
+      "tact": "P8-8",
+      "name": "Supply-Chain Vulnerability",
+      "frameworks": [
+        "OWASP LLM03"
+      ],
+      "called": "supply chain",
+      "status": "verified"
+    },
+    {
+      "tact": "M6-2",
+      "name": "Insecure Communication",
+      "frameworks": [
+        "AGENTIC ASI07"
+      ],
+      "called": "insecure multi-agent communication",
+      "status": "hypothesis"
+    },
+    {
+      "tact": "M8-6",
+      "name": "Unchecked Error Cascade",
+      "frameworks": [
+        "AGENTIC ASI08"
+      ],
+      "called": "cascading failure",
+      "status": "verified"
+    },
+    {
+      "tact": "M9",
+      "name": "Spontaneous Collaboration (pending ratify)",
+      "frameworks": [
+        "AGENTIC ASI10"
+      ],
+      "called": "Rogue Agents (parent coordinate pending ratify; no child code landed)",
+      "status": "hypothesis"
+    },
+    {
+      "tact": "P8-9",
+      "name": "Insecure Communication",
+      "frameworks": [
+        "AGENTIC ASI07"
+      ],
+      "called": "insecure multi-agent communication",
+      "status": "hypothesis"
+    },
+    {
+      "tact": "P4-10",
+      "name": "Unchecked Error Cascade",
+      "frameworks": [
+        "AGENTIC ASI08"
+      ],
+      "called": "cascading failure",
+      "status": "verified"
+    },
+    {
+      "tact": "P3-5",
+      "name": "Memory Poisoning",
+      "frameworks": [
+        "AGENTIC ASI06"
+      ],
+      "called": "memory & context poisoning",
+      "status": "verified"
+    }
+  ]
+}

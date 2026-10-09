@@ -1,0 +1,19 @@
+{
+  "asset": "tact-three-axis-check (EN) controlled-file integrity manifest (version-lock baseline)",
+  "guard_version": "v1.0",
+  "note": "SHA-256 is the content-authority baseline; version is the logical version. If any controlled file is rolled back/tampered externally, verify.sh will alert. After updating a controlled file, you must regenerate this MANIFEST.",
+  "controlled_files": {
+    "SKILL.md": {
+      "sha256": "ab9109c8b45ec8e5514cd3d0d66c0fe274725453edb5857ef48d7592c436ce9b",
+      "version": "v1.1.1"
+    },
+    "references/calibration_cases.json": {
+      "sha256": "22c35a9af1bad507f01aeee74a8522ec0a554d6720d87cd956e8be1b0425df71",
+      "version": "v1.2.0"
+    },
+    "references/coordinate_data.json": {
+      "sha256": "b19cd3a8c6608f14e454554a617c2fe0368763c1ffa9cae2684da736b46f167b",
+      "version": "v2.7.8"
+    }
+  }
+}

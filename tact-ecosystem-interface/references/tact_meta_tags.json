@@ -1,0 +1,183 @@
+{
+  "asset": "tact_meta_tags",
+  "meta_version": "v1.0",
+  "bound_to": "tact v2.7.8",
+  "generated": "2026-09-29",
+  "annotation_scope": "EXAMPLE-LEVEL: only 10 high-frequency coordinates have complete meta-tags; the other coordinates' meta-tags are null pending. Before use, first check whether the target coordinate has complete annotation; do not assume full coverage (guardrail ③).",
+  "note": "Meta-tags are an additive attribute layer: axes unchanged, coordinates unchanged, master data (coordinate_data.json) unmodified. severity follows the EU AI Act consequence grading; detectability follows ATLAS detection difficulty; attack_surface follows the ATLAS tactic mapping.",
+  "schema": {
+    "severity": {
+      "S1": "Critical (death / serious injury / major damage)",
+      "S2": "Moderate (health damage / substantial loss / group discrimination)",
+      "S3": "Minor (inconvenience / misleading)",
+      "S4": "No direct harm (recoverable internal error)"
+    },
+    "detectability": {
+      "D1": "Very easy (visible at the output layer)",
+      "D2": "Moderate (found in logs)",
+      "D3": "Hard (hidden)",
+      "D4": "Very hard (only known afterwards)"
+    },
+    "attack_surface": "input / model / output / system / training / environment",
+    "mirror": "mirror-pair coordinate code; null if no mirror",
+    "status": {
+      "active": "formal coordinate",
+      "predicted": "prediction slot (1 case)",
+      "pending": "empty prediction family",
+      "deprecated": "deprecated"
+    },
+    "domain": "symbol / interface / handoff / adversarial / fairness / compliance / emergent / memory / capability / other",
+    "evidence_strength": {
+      "E3": "≥3 cases",
+      "E2": "2 cases",
+      "E1": "1 case",
+      "E0": "no case, purely theoretical"
+    }
+  },
+  "mirrors": {
+    "M6-1": "P8-8",
+    "M6-2": "P8-9",
+    "M6-3": "P6-4",
+    "M6-5": "P8-5",
+    "M6-6": "P8-4",
+    "M6-11": "P8-7",
+    "M5-9": "P7-4",
+    "M5-8": "P6-4[5]",
+    "M4-2": "P8-3",
+    "M4-3": "P5-6",
+    "P2-1": "M3-1",
+    "P2-2": "M5-3",
+    "P2-3": "M7-1",
+    "P2-5": "M8-6",
+    "P4-5": "M2-3",
+    "P4-7": "M2-4",
+    "P4-8": "M1-2",
+    "P4-9": "M8-3"
+  },
+  "mirror_note": "18 pairs (36 coordinates) registered as a traceable list; the full mirror set is ~37, the rest await per-coordinate verification and completion. External convention: 117 coordinates / ~80 independent mechanisms / 18 registered mirror pairs.",
+  "status_annotations": {
+    "M9": {
+      "status": "pending",
+      "reason": "prediction family: INC-05 German-wiki spontaneous collaboration 1 case; the second mutually unrelated case is missing; per the evolution rule, not graduated",
+      "case": "INC-05"
+    },
+    "sensor-deception": {
+      "status": "predicted",
+      "reason": "prediction slot: sensor deception / input-medium replacement has only 1 case, does not occupy a formal child-coordinate number",
+      "case": "1 case"
+    }
+  },
+  "domain_symbol": [
+    "M2-1",
+    "M2-6",
+    "M2-7",
+    "P1-1",
+    "P1-2",
+    "P1-3",
+    "P4-2",
+    "P4-3"
+  ],
+  "domain_symbol_note": "symbol-domain 8 coordinates: the suspected-overlap group identified by ⑤ granularity calibration; recommended to ship to the validation pack for targeted annotation, then let the data decide merge/keep, not change by intuition.",
+  "examples": {
+    "M2-2": {
+      "name": "Factual Conflict",
+      "severity": "S2",
+      "detectability": "D1",
+      "attack_surface": "output",
+      "mirror": "P1-8",
+      "status": "active",
+      "domain": "memory/factual",
+      "evidence": "E3"
+    },
+    "M2-3": {
+      "name": "Self-Assessment Miscalibration",
+      "severity": "S2",
+      "detectability": "D1",
+      "attack_surface": "output",
+      "mirror": "P4-5",
+      "status": "active",
+      "domain": "capability",
+      "evidence": "E3"
+    },
+    "M2-5": {
+      "name": "Algorithmic Discrimination",
+      "severity": "S2",
+      "detectability": "D2",
+      "attack_surface": "model/training",
+      "mirror": "P7-1",
+      "status": "active",
+      "domain": "fairness",
+      "evidence": "E3"
+    },
+    "M3-1": {
+      "name": "Inference Jump",
+      "severity": "S1",
+      "detectability": "D1",
+      "attack_surface": "output",
+      "mirror": "P2-1",
+      "status": "active",
+      "domain": "reasoning",
+      "evidence": "E3"
+    },
+    "M4-2": {
+      "name": "Credential Leakage",
+      "severity": "S1",
+      "detectability": "D2",
+      "attack_surface": "system",
+      "mirror": "P8-3",
+      "status": "active",
+      "domain": "adversarial",
+      "evidence": "E3"
+    },
+    "M6-3": {
+      "name": "Prompt Injection",
+      "severity": "S1",
+      "detectability": "D2",
+      "attack_surface": "input",
+      "mirror": "P6-4",
+      "status": "active",
+      "domain": "adversarial",
+      "evidence": "E3"
+    },
+    "M6-6": {
+      "name": "Autonomous Privilege Escalation",
+      "severity": "S1",
+      "detectability": "D3",
+      "attack_surface": "system/environment",
+      "mirror": "P8-4",
+      "status": "active",
+      "domain": "adversarial",
+      "evidence": "E3"
+    },
+    "M6-11": {
+      "name": "Regulatory Evasion",
+      "severity": "S2",
+      "detectability": "D3",
+      "attack_surface": "model",
+      "mirror": "P8-7",
+      "status": "active",
+      "domain": "compliance",
+      "evidence": "E2"
+    },
+    "P7-1": {
+      "name": "Algorithmic Discrimination",
+      "severity": "S2",
+      "detectability": "D2",
+      "attack_surface": "model/training",
+      "mirror": "M2-5",
+      "status": "active",
+      "domain": "fairness",
+      "evidence": "E3"
+    },
+    "P1-8": {
+      "name": "Factual Conflict",
+      "severity": "S2",
+      "detectability": "D1",
+      "attack_surface": "output",
+      "mirror": "M2-2",
+      "status": "active",
+      "domain": "memory/factual",
+      "evidence": "E3"
+    }
+  }
+}
