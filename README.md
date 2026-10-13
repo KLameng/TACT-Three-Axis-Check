@@ -6,10 +6,38 @@
 
 > **判据蓝本声明**：本仓库的判据与坐标尚未经人工标注者独立验证，属"带判据的分类假设"，正确性待社区 **ratify**（提交真实案例 + 结构校验）逐项确认。使用者引用坐标时请自行核验，勿当作已验证事实。
 
+## 快速部署（在豆包里装这个技能）
+
+**方式一：用打包好的安装包（推荐，30 秒）**
+
+1. 下载 [`install/tact-skill-package-v1.2.1.zip`](install/tact-skill-package-v1.2.1.zip)（123KB，运行核心，已剔除备份与文档）
+2. 解压得到两个文件夹：`tact-three-axis-check/` 和 `tact-ecosystem-interface/`
+3. 把这两个文件夹放进豆包技能目录（`~/.doubao/agent_mode/workspace/.user_skills/`）
+4. 在豆包里直接描述一个 AI 事故/失败现象，技能会自动触发，输出 L/M/P 坐标 + 验证路径 + 合规映射
+
+**方式二：从仓库目录直接用**
+
+仓库里 `tact-three-axis-check/` 和 `tact-ecosystem-interface/` 就是技能源目录，结构与安装包一致。
+
+## 可运行测试（无需 LLM key，零依赖）
+
+仓库 `engine/` 提供纯 Python 规则引擎，一键复现校准集命中率：
+
+```bash
+cd engine
+python3 tact_run.py --calibration    # 跑 29 校准样例，输出三轴命中率报告
+python3 tact_run.py --text "事故描述"  # 输入事故文本，输出坐标 + 合规映射
+```
+
+当前基线（规则版，无 LLM）：M 轴召回 95.7% · P 轴 86.4% · L 轴 78.6%。接 LLM 判定可进一步提升。
+
 ## 仓库结构
 
 ```
 ├── LICENSE                          # CC BY 4.0 开源许可
+├── install/                         # 打包好的技能安装包（zip，解压即用）
+├── engine/                         # 可运行规则引擎（python3，零依赖，复现命中率）
+├── demo/                           # 零配置演示台（单 HTML，浏览器打开即用）
 ├── tact-three-axis-check/           # 主判据引擎（含中文 + en/ 英文版）
 │   ├── SKILL.md                     # 过闸流程与判据（入口，先读这里）
 │   ├── references/                  # 坐标底座 coordinate_data.json + 校准集 calibration_cases.json
@@ -27,7 +55,7 @@
 
 ## 校准与一致性
 
-- 校准基线：`calibration_cases.json`（21 例），运行校准模式计算三轴命中率作为诊断信号，**非通过/失败门槛**。
+- 校准基线：`calibration_cases.json`（v1.2.1，29 例，含真实 agent 空转案例 CAL-29），运行校准模式计算三轴命中率作为诊断信号，**非通过/失败门槛**。
 - 一致性历程：`docs/TACT-kappa全历程汇总与分析.md`（5 家国产模型、12 条 synthetic、Fleiss κ，最终 L κ 0.945 / 命中 98.2%）。
 - 说明：卡帕验证目前依赖模型自评，**人工独立验证交由开源社区自发 ratify**。
 
