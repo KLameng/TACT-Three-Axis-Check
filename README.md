@@ -6,18 +6,21 @@
 
 > **判据蓝本声明**：本仓库的判据与坐标尚未经人工标注者独立验证，属"带判据的分类假设"，正确性待社区 **ratify**（提交真实案例 + 结构校验）逐项确认。使用者引用坐标时请自行核验，勿当作已验证事实。
 
-## 快速部署（在豆包里装这个技能）
+## 快速部署（在豆包工作模式里装这个技能）
 
 **方式一：用打包好的安装包（推荐，30 秒）**
 
-1. 下载 [`install/tact-skill-package-v1.2.1.zip`](install/tact-skill-package-v1.2.1.zip)（123KB，运行核心，已剔除备份与文档）
-2. 解压得到两个文件夹：`tact-three-axis-check/` 和 `tact-ecosystem-interface/`
-3. 把这两个文件夹放进豆包技能目录（`~/.doubao/agent_mode/workspace/.user_skills/`）
-4. 在豆包里直接描述一个 AI 事故/失败现象，技能会自动触发，输出 L/M/P 坐标 + 验证路径 + 合规映射
+1. 下载 [`install/tact-skill-package-v1.2.1.zip`](install/tact-skill-package-v1.2.1.zip)（123KB，技能安装包）
+2. 打开**豆包工作模式**（agent 模式，不是普通聊天窗口）
+3. 把这个 zip 文件直接发给豆包，说"安装这个技能"——豆包会识别并完成安装
+4. 安装成功后，在对话里描述一个 AI 事故/失败现象，**命令豆包用 TACT 技能分析这个事故**
+5. 豆包会输出 L/M/P 三轴坐标 + 命中含义 + 验证路径 + 行业合规映射（OWASP / NIST / EU AI Act）
 
-**方式二：从仓库目录直接用**
+> 注意：必须在**豆包工作模式**下安装和使用；普通聊天窗口不支持技能安装与触发。
 
-仓库里 `tact-three-axis-check/` 和 `tact-ecosystem-interface/` 就是技能源目录，结构与安装包一致。
+**方式二：开发者从仓库源码直接装**
+
+仓库里 `tact-three-axis-check/` 和 `tact-ecosystem-interface/` 是技能源目录，结构与安装包一致，可直接复制到技能开发目录。
 
 ## 可运行测试（无需 LLM key，零依赖）
 
