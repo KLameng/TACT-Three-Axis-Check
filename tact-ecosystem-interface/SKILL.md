@@ -2,7 +2,7 @@
 name: tact-ecosystem-interface
 description: TACT 三轴坐标分类法的生态接口资产包：跨地图（TACT↔OWASP/NIST/ATLAS/EU AI Act/OWASP Agentic 2026 双向映射）、EU AI Act 义务映射、元标签分级层。当需要把 TACT 坐标翻译成行业框架条目、查 EU 法律义务条文、或给坐标补严重度/可检测性/镜像等元标签时使用。坐标体系以 tact-three-axis-check（117 坐标）为准。
 cross_skill_refs:
-  - references/coordinate_data.json
+  - ../tact-three-axis-check/references/coordinate_data.json
 ---
 
 # TACT 生态接口（tact-ecosystem-interface）
