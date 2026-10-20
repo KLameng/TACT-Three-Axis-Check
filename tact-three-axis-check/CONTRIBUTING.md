@@ -36,4 +36,4 @@ TACT 的坐标判据目前主要基于 synthetic（人工构造）样例，**真
 
 ---
 
-*Copyright (c) 2026 KLameng <911712412@qq.com> · Released under CC BY 4.0.*
+*Copyright (c) 2026 KLameng <911712412@qq.com> · Released under Apache-2.0.*

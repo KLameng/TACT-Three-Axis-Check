@@ -37,7 +37,7 @@ python3 tact_run.py --text "事故描述"  # 输入事故文本，输出坐标 +
 ## 仓库结构
 
 ```
-├── LICENSE                          # CC BY 4.0 开源许可
+├── LICENSE                          # Apache-2.0 开源许可
 ├── install/                         # 打包好的技能安装包（zip，解压即用）
 ├── engine/                         # 可运行规则引擎（python3，零依赖，复现命中率）
 ├── demo/                           # 零配置演示台（单 HTML，浏览器打开即用）
@@ -86,9 +86,9 @@ python3 tact_run.py --text "事故描述"  # 输入事故文本，输出坐标 +
 
 ## 许可与联系方式
 
-- 许可证：Creative Commons Attribution 4.0（CC BY 4.0），署名 **KLameng**。详见 `LICENSE`。
+- 许可证：**Apache License 2.0**，版权署名 **KLameng**。详见 `LICENSE`。
 - 维护者：**KLameng** · 联系邮箱：**911712412@qq.com**（问题反馈 / 案例提交 / 合作）
 
 ---
 
-*Copyright (c) 2026 KLameng <911712412@qq.com> · Released under CC BY 4.0.*
+*Copyright (c) 2026 KLameng <911712412@qq.com> · Released under Apache-2.0.*
