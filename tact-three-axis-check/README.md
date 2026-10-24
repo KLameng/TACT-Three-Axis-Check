@@ -12,7 +12,7 @@
 
 1. **定位**：判据蓝本 + 校准基线，**非"已验证可靠"**。引用本工具包作结论依据前，须先说明其验证状态。
 2. **验证范围**：L/M/P 三轴模型间一致性 κ 检验**仅用不同大模型作为标注者（5 家独立国产）**，**无真人检验**；κ 的"判别正确性"（相对真实机制）尚未被真人或真实案例独立验证，**待开源后社区自发 ratify**。检验全历程与差异分析见 [`docs/TACT-kappa全历程汇总与分析.md`](docs/TACT-kappa全历程汇总与分析.md)。
-3. **synthetic 不实证**：`references/calibration_cases.json` 的 21 条样例**均为 synthetic 判别样例**，仅供一致性判别检验，**不视为真实事故记录，不用于对外引用、不用于坐标 ratify 证据**。
+3. **synthetic 不实证**：`references/calibration_cases.json` 共 29 条样例，其中 **28 条为 synthetic 判别样例**（仅供一致性判别检验，**不视为真实事故记录，不用于对外引用、不用于坐标 ratify 证据**），**1 条为 real 案例**（`status=real`，来自真实运行/实测环境，可用于回归检验；引用时须标注其真实案例属性）。
 4. **覆盖状态（元标签 / 跨地图）**：元标签仅 **10/117** 坐标有完整标注，其余为 `null` 待补；跨地图映射多为 `hypothesis` 待验证状态（`verified` 才可引用，`hypothesis` 引用须标注"待验证"）。使用前须先查目标坐标/映射的标注状态，**不得默认全量已标**。
 
 ## 快速上手
@@ -25,20 +25,30 @@
 
 | 路径 | 内容 | 说明 |
 |---|---|---|
-| `SKILL.md` | 判据引导与执行流程（v1.1.1） | 核心文件 |
-| `references/coordinate_data.json` | 坐标底座（v2.7.8，117 子坐标） | **永不改动**，坐标语义不随判据修订变 |
-| `references/calibration_cases.json` | 校准基线（v1.1.1，21 条） | 校准/回归模式用 |
+| `SKILL.md` | 判据引导与执行流程（v1.1.3） | 核心文件 |
+| `references/coordinate_data.json` | 坐标底座（v2.7.9，117 子坐标） | **坐标语义不随判据修订变**；版本号随语义修订升版 |
+| `references/calibration_cases.json` | 校准基线（v1.2.2，29 条） | 校准/回归模式用 |
 | `docs/TACT-kappa全历程汇总与分析.md` | 卡帕检验全历程与分析方法 | 含验证范围诚实声明 |
-| `guard/` | 版本锁与完整性防护（MANIFEST + verify/lock/unlock/watch） | 防受控文件被外部回滚/篡改 |
+| `guard/` | 版本锁与完整性防护（MANIFEST + verify/lock/unlock/watch/sync_versions） | 防受控文件被外部回滚/篡改；`sync_versions.py` 保证文档版本串不漂移 |
 | `CONTRIBUTING.md` | 社区 ratify / 真实案例提交 / kappa 复验入口 | 正确性验证路径 |
 
 ## 版本
 
-- coordinate_data.json **v2.7.8**（坐标底座，永不改动）
-- calibration_cases.json **v1.1.1**（校准基线，绑定 v2.7.8）
-- SKILL.md **v1.1.1**（判据引导）
+- coordinate_data.json **v2.7.9**（坐标底座；坐标语义不随判据修订变）
+- calibration_cases.json **v1.2.2**（校准基线，绑定 coordinate_data.json v2.7.9）
+- SKILL.md **v1.1.3**（判据引导）
 
 版本维护纪律：**只改 SKILL.md 判据引导与 calibration 的 golden，不改 coordinate_data.json 的坐标语义**；改版后走 `guard/` 的版本锁流程（详见 `guard/README.md`）。
+
+> **版本号单一真源**：`guard/MANIFEST.json` 是版本号的唯一权威。文档中的版本串由 `guard/sync_versions.py` 渲染，**不得手工填写**。改完受控文件后执行：
+> ```bash
+> guard/unlock.sh                      # 解锁
+> # 编辑受控文件，同时更新 MANIFEST 的 version 与 sha256
+> python3 guard/sync_versions.py render # 渲染各文档版本串
+> guard/lock.sh                        # 重新锁定
+> guard/verify.sh                      # 完整性复核（PASS）
+> python3 guard/sync_versions.py check  # 版本漂移检测（PASS）
+> ```
 
 ## 社区参与
 
